@@ -28,3 +28,4 @@ python main.py
 
 - Przycisk z nazwą platformy otwiera stronę logowania w domyślnej przeglądarce.
 - Przycisk "Otwórz dane" otwiera plik tekstowy z danymi logowania w Notatniku.
+README.md
