@@ -1,75 +1,53 @@
-import os
-import subprocess
 import tkinter as tk
-from tkinter import ttk
 import webbrowser
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "data")
+BACKGROUND_COLOR = "#1f1f1f"
+BUTTON_COLOR = "#2f2f2f"
+BUTTON_TEXT_COLOR = "#f5f5f5"
+HEADER_COLOR = "#ffffff"
+SUBHEADER_COLOR = "#efefef"
 
-SOCIALS = [
-    {
-        "name": "Facebook",
-        "file": "facebook.txt",
-        "url": "https://www.facebook.com",
-    },
-    {
-        "name": "Instagram",
-        "file": "instagram.txt",
-        "url": "https://www.instagram.com",
-    },
-    {
-        "name": "TikTok",
-        "file": "tiktok.txt",
-        "url": "https://www.tiktok.com",
-    },
-    {
-        "name": "X",
-        "file": "x.txt",
-        "url": "https://www.twitter.com",
-    },
-]
+root = tk.Tk()
+root.title("GEOINVEST - SOCIAL_MEDIA_MACRO")
+root.configure(bg=BACKGROUND_COLOR)
+root.resizable(False, False)
 
+header_label = tk.Label(root, text="GEOINVEST", bg=BACKGROUND_COLOR, fg=HEADER_COLOR)
+header_label.config(font=("Arial", 18, "bold"))
+header_label.pack(pady=(10, 0))
 
-class SocialPanel:
-    def __init__(self, root: tk.Tk) -> None:
-        self.root = root
-        self.root.title("Panel Social Media")
-        self.root.geometry("500x400")
-        self.root.attributes("-alpha", 0.9)
+subheader_label = tk.Label(root, text="SOCIAL_MEDIA_MACRO", bg=BACKGROUND_COLOR, fg=SUBHEADER_COLOR)
+subheader_label.config(font=("Arial", 12))
+subheader_label.pack(pady=(0, 10))
 
-        self.build_ui()
+button_fb = tk.Button(root, text="Facebook", bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR,
+                      activebackground=BUTTON_COLOR, activeforeground=BUTTON_TEXT_COLOR,
+                      command=lambda: webbrowser.open("https://www.facebook.com/GEOINVEST"))
+button_fb.pack(pady=2)
 
-    def build_ui(self) -> None:
-        main_frame = ttk.Frame(self.root, padding=10)
-        main_frame.pack(fill=tk.BOTH, expand=True)
+button_ig = tk.Button(root, text="Instagram", bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR,
+                      activebackground=BUTTON_COLOR, activeforeground=BUTTON_TEXT_COLOR,
+                      command=lambda: webbrowser.open("https://business.facebook.com/creatorstudio"))
+button_ig.pack(pady=2)
 
-        for idx, social in enumerate(SOCIALS):
-            button = ttk.Button(
-                main_frame,
-                text=social["name"],
-                command=lambda url=social["url"]: self.launch_platform(url),
-            )
-            button.grid(row=idx, column=0, pady=5, sticky="w")
+button_tt = tk.Button(root, text="TikTok", bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR,
+                      activebackground=BUTTON_COLOR, activeforeground=BUTTON_TEXT_COLOR,
+                      command=lambda: webbrowser.open("https://www.tiktok.com/business/en"))
+button_tt.pack(pady=2)
 
-            note_button = ttk.Button(
-                main_frame,
-                text="Otwórz dane",
-                command=lambda f=social["file"]: self.open_notes(f),
-            )
-            note_button.grid(row=idx, column=1, padx=10)
+button_x = tk.Button(root, text="X", bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR,
+                     activebackground=BUTTON_COLOR, activeforeground=BUTTON_TEXT_COLOR,
+                     command=lambda: webbrowser.open("https://x.com/GEOINVEST"))
+button_x.pack(pady=2)
 
-    @staticmethod
-    def launch_platform(url: str) -> None:
-        webbrowser.open(url)
+def adjust_transparency(value):
+    alpha = float(value) / 100.0
+    root.attributes("-alpha", alpha)
 
-    @staticmethod
-    def open_notes(filename: str) -> None:
-        filepath = os.path.join(DATA_DIR, filename)
-        subprocess.Popen(["notepad.exe", filepath])
+slider = tk.Scale(root, from_=10, to=90, orient=tk.HORIZONTAL, command=adjust_transparency,
+                  bg=BACKGROUND_COLOR, fg=BUTTON_TEXT_COLOR, highlightthickness=0, bd=0,
+                  troughcolor=BUTTON_COLOR, activebackground=BUTTON_COLOR)
+slider.pack(side=tk.BOTTOM, fill=tk.X)
+slider.set(90)
 
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = SocialPanel(root)
-    root.mainloop()
+root.mainloop()
