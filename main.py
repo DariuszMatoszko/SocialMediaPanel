@@ -44,7 +44,7 @@ class SocialPanel:
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
         self.root.title("Panel Social Media")
-        self.root.geometry("360x420")
+        self.root.geometry("340x380")
         self.root.configure(bg=BACKGROUND_COLOR)
         self.root.attributes("-alpha", DEFAULT_ALPHA)
 
@@ -76,9 +76,7 @@ class SocialPanel:
         subheader_label.pack(pady=(0, 16))
 
         buttons_frame = tk.Frame(content_frame, bg=BACKGROUND_COLOR)
-        buttons_frame.pack(fill=tk.X)
-        buttons_frame.columnconfigure(0, weight=1)
-        buttons_frame.columnconfigure(1, weight=1)
+        buttons_frame.pack()
 
         for idx, social in enumerate(SOCIALS):
             platform_button = tk.Button(
@@ -92,13 +90,13 @@ class SocialPanel:
                 relief=tk.FLAT,
                 bd=0,
                 height=2,
+                width=14,
             )
             platform_button.grid(
                 row=idx,
                 column=0,
-                padx=(0, 10),
+                padx=(0, 8),
                 pady=6,
-                sticky="ew",
             )
 
             note_button = tk.Button(
@@ -112,17 +110,17 @@ class SocialPanel:
                 relief=tk.FLAT,
                 bd=0,
                 height=2,
+                width=14,
             )
             note_button.grid(
                 row=idx,
                 column=1,
-                padx=(10, 0),
+                padx=(8, 0),
                 pady=6,
-                sticky="ew",
             )
 
         slider_frame = tk.Frame(main_frame, bg=BACKGROUND_COLOR)
-        slider_frame.pack(fill=tk.X, padx=20, pady=(10, 16))
+        slider_frame.pack(fill=tk.X, padx=24, pady=(10, 16))
 
         slider_label = tk.Label(
             slider_frame,
@@ -138,7 +136,7 @@ class SocialPanel:
             from_=MIN_ALPHA_PERCENT,
             to=MAX_ALPHA_PERCENT,
             orient=tk.HORIZONTAL,
-            length=280,
+            length=240,
             bg=BACKGROUND_COLOR,
             fg=SUBHEADER_COLOR,
             highlightthickness=0,
