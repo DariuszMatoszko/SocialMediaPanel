@@ -1,0 +1,2 @@
+login: your_x_login
+haslo: your_x_password

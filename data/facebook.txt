@@ -1,0 +1,2 @@
+login: your_facebook_login
+haslo: your_facebook_password
