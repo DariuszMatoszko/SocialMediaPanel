@@ -1,0 +1,2 @@
+login: your_tiktok_login
+haslo: your_tiktok_password

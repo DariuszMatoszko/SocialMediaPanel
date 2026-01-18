@@ -1,0 +1,2 @@
+login: your_instagram_login
+haslo: your_instagram_password
